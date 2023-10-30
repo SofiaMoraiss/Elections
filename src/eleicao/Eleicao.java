@@ -1,6 +1,7 @@
 package eleicao;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +17,13 @@ public class Eleicao {
     public Eleicao(int opcaoCargo, Date data) {
         this.opcaoCargo = opcaoCargo;
         this.data = data;
+    }
+
+    public String getOpcaoCargo(){
+        if (opcaoCargo == 6){
+            return "federal";
+        }
+        return "estadual";
     }
 
     public Map<Integer, Partido> getPartidos() {
@@ -84,5 +92,9 @@ public class Eleicao {
             partido.processaVotos(qtdVotos);
             return;
         }
+    }
+
+    public void ordenaEleitos(){
+        Collections.sort(eleitos);
     }
 }

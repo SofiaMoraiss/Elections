@@ -1,8 +1,10 @@
 package eleicao;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Date;
 
-public class Candidato {
+public class Candidato implements Comparable<Candidato>{
     public enum TipoCandidato {
         FEDERAL(6), ESTADUAL(7);
 
@@ -120,6 +122,23 @@ public class Candidato {
 
     @Override
     public String toString() {
-        return this.nome + " (" + this.partido.getSigla() + "," + this.getVotos() + ")";
+        String x = "";
+        if (ehFederado()){
+                x+= "*";
+            }
+        x += this.nome + " (" + this.partido.getSigla() + " , " + NumberFormat.getNumberInstance().format(this.getVotos()) + ")";
+        return x;
+    }
+
+    @Override
+    public int compareTo(Candidato c) {
+        int dif = this.votosNominais - c.votosNominais; 
+        if (dif != 0){
+            return -dif;
+        } 
+        else {
+            // NÃO SEI SE TA INDO O MAIS VELHO OU NOVO PRIMEIRO
+            return c.dataNascimento.compareTo(this.dataNascimento);
+        }
     }
 }

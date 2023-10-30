@@ -50,4 +50,15 @@ public class Partido {
     public String toString() {
         return this.sigla + " (" + this.getNumero() + ") - " + this.getVotosLegenda() + " votos de legenda";
     }
+
+    //@Override
+    //public int compareTo(Partido p) {
+        /*int dif = this.voto - c.votosNominais; 
+        if (dif != 0){
+            return dif;
+        } 
+        else {
+            return c.dataNascimento.compareTo(this.dataNascimento);
+        }*/
+    //}
 }

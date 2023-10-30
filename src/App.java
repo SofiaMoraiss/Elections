@@ -3,10 +3,7 @@ import java.text.ParseException;
 import java.util.Date;
 import eleicao.Eleicao;
 import io.Leitor;
-
-// Imports para teste, lembrar de remover
-import eleicao.Candidato;
-import eleicao.Partido;
+import io.Relatorio;
 
 public class App {
     public static void main(String[] args) {
@@ -15,7 +12,18 @@ public class App {
             System.exit(1);
         }
 
-        int opcaoCargo = Integer.parseInt(args[0]);
+        int opcaoCargo=0;
+        if (args[0].compareTo("--estadual")==0){
+            opcaoCargo = 7;
+        }
+        else if (args[0].compareTo("--federal")==0){
+            opcaoCargo = 6;
+        }
+        else {
+            System.out.println("Opção de cargo inválida!");
+            System.exit(1);
+        }
+        
         String caminhoArquivoCandidatos = args[1];
         String caminhoArquivoVotacao = args[2];
         Date data = null;
@@ -34,6 +42,11 @@ public class App {
         // TODO: ajustar leitor para classe utilizavel abaixo :P
         Leitor leitor = new Leitor();
         leitor.leArquivos(eleicao, caminhoArquivoVotacao, caminhoArquivoCandidatos);
+
+        Relatorio r = new Relatorio();
+        r.printaRelatorio(eleicao);
+        //r.printaNumEleitos(eleicao);
+        //r.printa2(eleicao);
         
         /* 
             Apenas testes, lembrar de remover depois
@@ -42,7 +55,7 @@ public class App {
         for (Candidato c: eleicao.getCandidatos().values()) {
             System.out.println(c);
         }
-        */
+        
         System.out.println("Candidatos eleitos: ");
         for (Candidato c: eleicao.getEleitos()) {
             System.out.println(c);
@@ -57,6 +70,6 @@ public class App {
                 System.out.println(c);
             }
             System.out.println("\n--------------------------------------------------------------------------\n");
-        }
+        }*/
     }
 }
